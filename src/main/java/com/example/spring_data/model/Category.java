@@ -1,8 +1,7 @@
-package com.example.spring_data;
+package com.example.spring_data.model;
 
 import java.util.Objects;
 import org.hibernate.proxy.HibernateProxy;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,20 +21,15 @@ import lombok.ToString;
 @AllArgsConstructor
 @Builder
 @Entity
-public class Product {
+public class Category {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_generator")
-    @SequenceGenerator(name = "product_generator", sequenceName = "product_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "category_generator")
+    @SequenceGenerator(name = "category_generator", sequenceName = "category_seq",
+            allocationSize = 1)
     private Long id;
 
-    @Column(length = 512)
     private String name;
-
-    @Column(columnDefinition = "TEXT")
-    private String description;
-
-    private double price;
 
     @Override
     public final boolean equals(Object o) {
@@ -51,8 +45,8 @@ public class Product {
                 : this.getClass();
         if (thisEffectiveClass != oEffectiveClass)
             return false;
-        Product product = (Product) o;
-        return getId() != null && Objects.equals(getId(), product.getId());
+        Category category = (Category) o;
+        return getId() != null && Objects.equals(getId(), category.getId());
 
     }
 

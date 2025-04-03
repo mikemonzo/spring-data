@@ -1,6 +1,8 @@
 package com.example.spring_data;
 
 import org.springframework.stereotype.Component;
+import com.example.spring_data.model.Product;
+import com.example.spring_data.repository.ProductRepository;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 
@@ -12,14 +14,7 @@ public class MainDeMentira {
 
     @PostConstruct
     public void run() throws Exception {
-        Product product = Product.builder().name("Product 1").description("Description 1")
-                .price(10.0).build();
-        productRepository.save(product);
-
-        Product product2 = Product.builder().name("Product 2").description("Description 2")
-                .price(20.0).build();
-        productRepository.save(product2);
-
-        System.out.println("Products saved successfully!");
+        productRepository.findById(10L).ifPresentOrElse(System.out::println,
+                () -> System.out.println("Product not found"));
     }
 }
