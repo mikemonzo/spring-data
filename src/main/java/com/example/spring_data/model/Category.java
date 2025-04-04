@@ -1,11 +1,14 @@
 package com.example.spring_data.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import org.hibernate.proxy.HibernateProxy;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -30,6 +33,10 @@ public class Category {
     private Long id;
 
     private String name;
+
+    @OneToMany(mappedBy = "category")
+    @Builder.Default
+    private List<Product> products = new ArrayList<>();
 
     @Override
     public final boolean equals(Object o) {

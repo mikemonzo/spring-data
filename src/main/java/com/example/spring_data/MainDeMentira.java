@@ -14,7 +14,9 @@ public class MainDeMentira {
 
     @PostConstruct
     public void run() throws Exception {
-        productRepository.findById(10L).ifPresentOrElse(System.out::println,
-                () -> System.out.println("Product not found"));
+        /*
+         * productRepository.findById(10L).ifPresentOrElse(System.out::println, () ->
+         * System.out.println("Product not found"));
+         */
     }
 }
